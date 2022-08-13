@@ -1,9 +1,7 @@
-//calling environment variable for host
-require('dotenv').config()
-//Requiring the Express.js module
-const express = require('express');
-//Importing the workout routes from workout.js
-const workoutRoutes = require('./routes/workouts')
+require('dotenv').config() //calling environment variable for host
+const express = require('express'); //Requiring the Express.js module
+const mongoose = require('mongoose'); //Requiring Mongoose
+const workoutRoutes = require('./routes/workouts')//Importing the workout routes from workout.js
 
 
 //Start up app. Invokes Express function
@@ -20,9 +18,14 @@ app.use((req, res, next) => {
 //Route Handlers
 app.use('/api/workouts', workoutRoutes)
 
-//Setting up port--listen for requests
-app.listen(process.env.PORT, () => {
-    console.log(`Listening now on http://localhost:${process.env.PORT}`)
-});
+mongoose.connect(process.env.MONGO_URI) //Connect to the DB using the MONGO URI link in .env file
+    .then(() => {
+        app.listen(process.env.PORT, () => {
+            console.log(`Connected to db & listening now on http://localhost:${process.env.PORT}`)
+        });
+    })
+    .catch((error) => {
+        console.log(error)
+    })
 
 process.env

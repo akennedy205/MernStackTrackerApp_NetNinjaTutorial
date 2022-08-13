@@ -6,7 +6,12 @@
  ### Installation instructions
  #### cd `backend` folder, the `npm install express`
  #### npm install -g nodemon   `npm install dotenv`
+  - `npm install mongoose`
 
- ## End point requests tested through Postman
+ ## Express App and API endpoint requests tested through Postman
+
+ ## Technologies
+  - Postman
+  - MongoDB Atlas & Mongoose for database
 
  ## Installing middleware
