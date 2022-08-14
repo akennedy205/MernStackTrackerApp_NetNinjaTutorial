@@ -15,3 +15,11 @@
   - MongoDB Atlas & Mongoose for database
 
  ## Installing middleware
+
+ ## To run backend
+  - `cd backend`
+  - `npm run dev`
+
+  ## To run frontend
+  - `cd frontend`
+  - `npm start`
