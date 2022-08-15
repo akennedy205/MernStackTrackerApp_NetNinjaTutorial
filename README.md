@@ -13,6 +13,9 @@
  ## Technologies
   - Postman
   - MongoDB Atlas & Mongoose for database
+  - React for front-end components
+  - Express and Node
+  - JWT (JSON Web Tokens) for authentication & authorisation
 
  ## Installing middleware
 

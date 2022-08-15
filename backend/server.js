@@ -2,7 +2,7 @@ require('dotenv').config() //calling environment variable for host
 const express = require('express'); //Requiring the Express.js module
 const mongoose = require('mongoose'); //Requiring Mongoose
 const workoutRoutes = require('./routes/workouts')//Importing the workout routes from workout.js
-
+const userRoutes = require('./routes/user') //Requiring the userRoutes for login/signup
 
 //Start up app. Invokes Express function
 const app = express();
@@ -17,6 +17,7 @@ app.use((req, res, next) => {
 
 //Route Handlers
 app.use('/api/workouts', workoutRoutes)
+app.use('/api/user', userRoutes)
 
 mongoose.connect(process.env.MONGO_URI) //Connect to the DB using the MONGO URI link in .env file
     .then(() => {
