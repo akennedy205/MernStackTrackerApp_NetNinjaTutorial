@@ -8,6 +8,7 @@ const WorkoutForm = () => {
   const [load, setLoad] = useState('')
   const [reps, setReps] = useState('')
   const [error, setError] = useState(null)
+  const [emptyFields, setEmptyFields] = useState([])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -25,8 +26,10 @@ const WorkoutForm = () => {
 
     if (!response.ok) {
       setError(json.error)
+      setEmptyFields(json.emptyFields)
     }
     if (response.ok) {
+      setEmptyFields([])
       setError(null)
       setTitle('')
       setLoad('')
@@ -40,11 +43,12 @@ const WorkoutForm = () => {
     <form className="create" onSubmit={handleSubmit}> 
       <h3>Add a New Workout</h3>
 
-      <label>Excersize Title:</label>
+      <label>Exercise Title:</label>
       <input 
         type="text" 
         onChange={(e) => setTitle(e.target.value)} 
         value={title}
+        className={emptyFields.includes('title') ? 'error' : ''}
       />
 
       <label>Load (in kg):</label>
@@ -52,13 +56,15 @@ const WorkoutForm = () => {
         type="number" 
         onChange={(e) => setLoad(e.target.value)} 
         value={load}
+        className={emptyFields.includes('load') ? 'error' : ''}
       />
 
       <label>Number of Reps:</label>
       <input 
         type="number" 
         onChange={(e) => setReps(e.target.value)} 
-        value={reps} 
+        value={reps}
+        className={emptyFields.includes('reps') ? 'error' : ''}
       />
 
       <button>Add Workout</button>
