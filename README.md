@@ -16,6 +16,7 @@
   - React for front-end components
   - Express and Node
   - JWT (JSON Web Tokens) for authentication & authorisation
+  - Bcrypt for password hashing
 
  ## Installing middleware
 
