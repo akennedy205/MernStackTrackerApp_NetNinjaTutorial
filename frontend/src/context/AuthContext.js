@@ -23,7 +23,7 @@ export const AuthContextProvider = ({children}) => {
 
     //Our returned template
     return(
-        <AuthContext.Provider value = {{...state}}>
+        <AuthContext.Provider value = {{...state, dispatch}}>
             { children }
         </AuthContext.Provider>
     )
