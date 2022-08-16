@@ -26,7 +26,7 @@ const Home = () => {
     }
 
     if (user){
-      fetchWorkouts
+      return fetchWorkouts
     }
 
     fetchWorkouts()
