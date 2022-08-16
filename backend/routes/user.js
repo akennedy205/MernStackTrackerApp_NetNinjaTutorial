@@ -1,23 +1,14 @@
-const express = require('express') //require Express
+const express = require('express')
 
-//Importing controller functions from userController.js file
-const {signupUser, loginUser} = require('../controllers/userController')
-
-
+// controller functions
+const { loginUser, signupUser } = require('../controllers/userController')
 
 const router = express.Router()
 
-//login route
+// login route
 router.post('/login', loginUser)
 
-
-
-
-
-//sign up route
+// signup route
 router.post('/signup', signupUser)
-
-
-
 
 module.exports = router

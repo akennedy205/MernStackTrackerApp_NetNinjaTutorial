@@ -1,32 +1,33 @@
-require('dotenv').config() //calling environment variable for host
-const express = require('express'); //Requiring the Express.js module
-const mongoose = require('mongoose'); //Requiring Mongoose
-const workoutRoutes = require('./routes/workouts')//Importing the workout routes from workout.js
-const userRoutes = require('./routes/user') //Requiring the userRoutes for login/signup
+require('dotenv').config()
 
-//Start up app. Invokes Express function
-const app = express();
+const express = require('express')
+const mongoose = require('mongoose')
+const workoutRoutes = require('./routes/workouts')
+const userRoutes = require('./routes/user')
 
-//adding middleware
-app.use(express.json()) //Any request that comes in, it will look to see if there is some data coming with the request and will parse it
+// express app
+const app = express()
+
+// middleware
+app.use(express.json())
 
 app.use((req, res, next) => {
-    console.log(req.path, req.method)
-    next()
-});
+  console.log(req.path, req.method)
+  next()
+})
 
-//Route Handlers
+// routes
 app.use('/api/workouts', workoutRoutes)
 app.use('/api/user', userRoutes)
 
-mongoose.connect(process.env.MONGO_URI) //Connect to the DB using the MONGO URI link in .env file
-    .then(() => {
-        app.listen(process.env.PORT, () => {
-            console.log(`Connected to db & listening now on http://localhost:${process.env.PORT}`)
-        });
+// connect to db
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    // listen for requests
+    app.listen(process.env.PORT, () => {
+      console.log('connected to db & listening on port', process.env.PORT)
     })
-    .catch((error) => {
-        console.log(error)
-    })
-
-process.env
+  })
+  .catch((error) => {
+    console.log(error)
+  })
